@@ -25,4 +25,16 @@ public class IngredientsRepository
         Ingredient newIngredient = _db.Query<Ingredient>(sql, ingredientData).FirstOrDefault();
         return newIngredient;
     }
+
+    internal List<Ingredient> GetRecipeIngredients(int recipeId)
+    {
+        string sql = @"
+        SELECT
+        *
+        FROM ingredients
+        WHERE recipeId = @recipeId
+        ;";
+        List<Ingredient> ingredients = _db.Query<Ingredient>(sql, new { recipeId }).ToList();
+        return new List<Ingredient>(ingredients);
+    }
 }
