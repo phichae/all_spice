@@ -13,6 +13,13 @@ public class IngredientsService
         return ingredient;
     }
 
+    internal string DeleteIngredient(int ingredientId)
+    {
+        int rows = _repo.DeleteIngredient(ingredientId);
+        if(rows > 1) throw new Exception($"Something went wrong.");
+        return $"This ingredient has been deleted.";
+    }
+
     internal List<Ingredient> GetRecipeIngredients(int recipeId)
     {
         List<Ingredient> ingredients = _repo.GetRecipeIngredients(recipeId);
