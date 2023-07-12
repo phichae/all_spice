@@ -28,7 +28,7 @@ public class FavoritesRepository
         SELECT
         fav.*,
         rec.*,
-        acc.*,
+        acc.*
         FROM favorites fav
         JOIN recipes rec ON rec.id = fav.recipeId
         JOIN accounts acc ON acc.Id = fav.accountId
