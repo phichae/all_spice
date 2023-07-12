@@ -28,4 +28,19 @@ namespace all_spice.Controllers;
                 return BadRequest(e.Message);
             }
         }
+        [HttpDelete("{favId}")]
+        [Authorize]
+        public async Task<ActionResult<string>> Delete(int favId)
+        {
+            try
+            {
+                Account userInfo = await _auth0.GetUserInfoAsync<Account>(HttpContext);
+                _favoritesService.Delete(favId, userInfo);
+                return Ok("Favorite was deleted.");
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }

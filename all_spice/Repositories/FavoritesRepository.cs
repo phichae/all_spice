@@ -8,6 +8,7 @@ public class FavoritesRepository
         _db = db;
     }
 
+
     internal Favorite FavoriteRecipe(Favorite favData)
     {
         string sql = @"
@@ -20,6 +21,15 @@ public class FavoritesRepository
         int lastInsertId = _db.ExecuteScalar<int>(sql, favData);
         favData.id = lastInsertId;
         return favData;
+    }
+
+    internal Favorite getById(int favId)
+    {
+        string sql = @"
+        SELECT * FROM favorites WHERE favorites.id = @favId
+        ;";
+        var fav = _db.Query<Favorite>(sql, new { favId }).FirstOrDefault();
+        return fav;
     }
 
     internal List<FavoriteRecipe> getFavRecipes(string userId)
@@ -41,5 +51,15 @@ public class FavoritesRepository
             return recipe;
         }, new { userId }).ToList();
         return favRecipes;
+    }
+    internal int Delete(int favId)
+    {
+        string sql = @"
+        DELETE FROM favorites
+        WHERE id = @favId
+        LIMIT 1
+        ;";
+        int rows = _db.Execute(sql, new { favId });
+        return rows;
     }
 }
