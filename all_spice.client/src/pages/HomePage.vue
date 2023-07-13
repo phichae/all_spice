@@ -1,6 +1,8 @@
 <template>
   <div class="container-fluid">
-    {{ recipes }}
+    <div v-for="r in recipes" :key="r.id">
+      <RecipeCard :recipes="r" />
+    </div>
   </div>
 </template>
 
