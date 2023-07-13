@@ -1,7 +1,13 @@
 <template>
   <div class="container-fluid">
-    <div v-for="r in recipes" :key="r.id">
-      <RecipeCard :recipes="r" />
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <section class="row justify-content-center">
+          <div class="col-md-3" v-for="r in recipes" :key="r.id">
+            <RecipeCard :recipe="r" />
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </template>

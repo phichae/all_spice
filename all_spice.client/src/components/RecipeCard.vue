@@ -1,17 +1,15 @@
 <template>
-    <div class="col-4 p-3">
-        <div class="card">
-            <img :src="recipe.img" :alt="recipe.title" class="img-fluid">
+        <div class="card p-3 recipe-card my-3">
+            <img :src="recipe.img" :alt="recipe.title" class="img-fluid recipe-img">
             <div class="card-body">
                 <h3>
                     {{ recipe.title }}
                 </h3>
-                <p>
-                    {{ recipe.description }}
-                </p>
+                <span class="align-bottom">
+                    {{ recipe.category }}
+                </span>
             </div>
         </div>
-    </div>
 
 </template>
 
@@ -31,6 +29,15 @@ export default {
 
 
 <style lang="scss" scoped>
+    .recipe-card{
+        height: 70vh;
+    }
 
+    .recipe-img{
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
     
 </style>
